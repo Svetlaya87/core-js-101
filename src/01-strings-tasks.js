@@ -18,8 +18,10 @@
  *   'aa',''    => 'aa'
  *   '',  'bb'  => 'bb'
  */
-function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function concatenateStrings(value1, value2) {
+  // throw new Error('Not implemented');
+  // console.log(value1, value2, 'Hello, world');
+  return `${value1}${value2}`;
 }
 
 
@@ -34,8 +36,9 @@ function concatenateStrings(/* value1, value2 */) {
  *   'b'     => 1
  *   ''      => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(value) {
+  // throw new Error('Not implemented');
+  return value.length;
 }
 
 /**
@@ -51,8 +54,9 @@ function getStringLength(/* value */) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  // throw new Error('Not implemented');
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -65,8 +69,9 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  // throw new Error('Not implemented');
+  return value.substring(7, value.length - 1);
 }
 
 
@@ -80,8 +85,9 @@ function extractNameFromTemplate(/* value */) {
  *   'John Doe'  => 'J'
  *   'cat'       => 'c'
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(value) {
+  // throw new Error('Not implemented');
+  return value.charAt(0);
 }
 
 /**
@@ -95,8 +101,9 @@ function getFirstChar(/* value */) {
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(value) {
+  // throw new Error('Not implemented');
+  return value.trim();
 }
 
 /**
@@ -110,8 +117,9 @@ function removeLeadingAndTrailingWhitespaces(/* value */) {
  *   'A', 5  => 'AAAAA'
  *   'cat', 3 => 'catcatcat'
  */
-function repeatString(/* value, count */) {
-  throw new Error('Not implemented');
+function repeatString(value, count) {
+  // throw new Error('Not implemented');
+  return value.repeat(count);
 }
 
 /**
@@ -126,8 +134,9 @@ function repeatString(/* value, count */) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  // throw new Error('Not implemented');
+  return str.replace(value, '');
 }
 
 /**
@@ -141,8 +150,18 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  // throw new Error('Not implemented');
+  let str2;
+  if (str.indexOf('<') !== -1) {
+    str2 = str.substring(str.indexOf('<') + 1);
+  }
+
+  if (str.indexOf('>') !== -1) {
+    str2 = str2.substring(0, str2.indexOf('>'));
+  }
+
+  return `${str2}`;
 }
 
 
@@ -156,8 +175,9 @@ function unbracketTag(/* str */) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+function convertToUpperCase(str) {
+  // throw new Error('Not implemented');
+  return str.toLocaleUpperCase();
 }
 
 /**
@@ -175,8 +195,9 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  // throw new Error('Not implemented');
+  return str.split(';');
 }
 
 /**
@@ -202,8 +223,39 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  // throw new Error('Not implemented');
+  const gorizontalLine = '─';
+  const verticalLine = '│';
+  const topLeftAngle = '┌';
+  const topRightAngle = '┐';
+  const btmLeftAngle = '└';
+  const btmRightAngle = '┘';
+  const paragraph = '\n';
+
+  let rect = '';
+  let gorizontalStroke = '';
+  let gorizontalspace = '';
+  for (let i = 1; i <= (width - 2); i += 1) {
+    gorizontalStroke += gorizontalLine;
+  }
+
+  for (let i = 1; i <= (width - 2); i += 1) {
+    gorizontalspace += ' ';
+  }
+
+  gorizontalspace = `${verticalLine}${gorizontalspace}${verticalLine}${paragraph}+`;
+
+  for (let i = 1; i <= (height - 2); i += 1) {
+    rect += gorizontalspace;
+  }
+
+  const firstLine = `${topLeftAngle}${gorizontalStroke}${topRightAngle}${paragraph}+`;
+  const lastLine = `${btmLeftAngle}${gorizontalStroke}${btmRightAngle}${paragraph}`;
+  rect = `+${firstLine}${rect}${lastLine}`;
+  rect = rect.split('+').join('');
+
+  return `${rect}`;
 }
 
 
@@ -223,8 +275,23 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  // throw new Error('Not implemented');
+  const base = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';// 0-12, 13-25, 26-38, 39-51
+  const str1 = str.split('');
+  let codedStr = [];
+  for (let i = 0; i < str1.length; i += 1) {
+    const index = base.indexOf(str1[i]);
+    if (index === -1) {
+      codedStr.push(str1[i]);
+    } else if (index <= 12 || (index > 25 && index < 39)) {
+      codedStr.push(base[index + 13]);
+    } else {
+      codedStr.push(base[index - 13]);
+    }
+  }
+  codedStr = codedStr.join('');
+  return codedStr;
 }
 
 /**
@@ -240,8 +307,13 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  // throw new Error('Not implemented');
+  const res = value;
+  if (typeof (res) === 'string' || (res instanceof String)) {
+    return true;
+  }
+  return false;
 }
 
 
