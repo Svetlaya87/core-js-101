@@ -292,8 +292,21 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  // throw new Error('Not implemented');
+
+  value *= 1;
+  // console.log(value);
+  if (Number.isNaN(value)) {
+    // console.log(def);
+    return def;
+  }
+  if (typeof value === 'number') {
+    // console.log(typeof value, value);
+    return value;
+  }
+  // console.log(value);
+  return def;
 }
 
 module.exports = {
