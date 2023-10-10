@@ -211,13 +211,13 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(num, pow) {
+function roundToPowerOfTen(numOrg, pow) {
   // throw new Error('Not implemented');
-  num = (`${num}`).split('').map((a) => a * 1);
+  const num = (`${numOrg}`).split('').map((a) => a * 1);
   const res = [];
 
 
-  for (let i = 0; i < num.length; i++) {
+  for (let i = 0; i < num.length; i += 1) {
     if ((3 - pow) === i && num[3 - pow] >= 5 && pow !== 0) {
       if (num[i] === 9) {
         res.push(10);
@@ -261,8 +261,9 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(n) {
+function isPrime(nOrg) {
   // throw new Error('Not implemented');
+  let n = nOrg; // because stupid eslint forces 'no-param-reassign'
   if ((n % 2 === 0 && n / 2 !== 1)
       || (n % 5 === 0 && n / 5 !== 1)
       || (n % 7 === 0 && n / 7 !== 1)) {
@@ -292,9 +293,9 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(value, def) {
+function toNumber(valueOrg, def) {
   // throw new Error('Not implemented');
-
+  let value = valueOrg;
   value *= 1;
   // console.log(value);
   if (Number.isNaN(value)) {
