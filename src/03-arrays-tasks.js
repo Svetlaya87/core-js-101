@@ -67,8 +67,9 @@ function generateOdds(len) {
  *    [0, 1, 2, 3, 4, 5] => [0, 1, 2, 3, 4, 5,   0, 1, 2, 3, 4, 5]
  *    [] => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+function doubleArray(arr) {
+  // throw new Error('Not implemented');
+  return [...arr, ...arr];
 }
 
 
@@ -83,8 +84,9 @@ function doubleArray(/* arr */) {
  *    [-1, 2, -5, -4, 0] => [ 2 ]
  *    [] => []
  */
-function getArrayOfPositives(/* arr */) {
-  throw new Error('Not implemented');
+function getArrayOfPositives(arr) {
+  // throw new Error('Not implemented');
+  return arr.filter((el) => el > 0);
 }
 
 /**
@@ -98,8 +100,9 @@ function getArrayOfPositives(/* arr */) {
  *    [ 1, 2, 3, 4, 5 ] => []
  *    [ 'cat, 'dog', 'raccoon' ] => [ 'cat', 'dog', 'raccoon' ]
  */
-function getArrayOfStrings(/* arr */) {
-  throw new Error('Not implemented');
+function getArrayOfStrings(arr) {
+  // throw new Error('Not implemented');
+  return arr.filter((el) => typeof el === 'string');
 }
 
 /**
@@ -115,8 +118,21 @@ function getArrayOfStrings(/* arr */) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arrOrg) {
+  // throw new Error('Not implemented');
+  let arr = arrOrg;
+  const falsy = [false, null, 0, '', undefined, NaN];
+  function myfunc(el) {
+    if (falsy.indexOf(el) === -1) {
+      // console.log(el);
+      return el;
+    }
+    return false;
+  }
+
+  arr = arr.filter(myfunc);
+  // console.log(arr);
+  return arr;
 }
 
 /**
