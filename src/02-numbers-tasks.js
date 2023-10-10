@@ -124,9 +124,9 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
-function getAngleBetweenVectors(x1, y1, x2, y2) {
-  // throw new Error('Not implemented');
-  const angle1 = Math.atan(y1 / x1);
+function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
+  throw new Error('Not implemented');
+  /* const angle1 = Math.atan(y1 / x1);
   const angle2 = Math.atan(y2 / x2);
 
   if (((x1 > 0 && x2 > 0) && (y1 > 0 && y2 > 0))
@@ -136,7 +136,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
     return Math.abs(angle1 - angle2);
   }
 
-  return (angle1 + angle2);
+  return (angle1 + angle2); */
 }
 
 /**
@@ -151,8 +151,11 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  // throw new Error('Not implemented');
+  let str = (`${value}`).split('');
+  str = str[str.length - 1] * 1;
+  return str;
 }
 
 
@@ -167,8 +170,9 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  // new Error('Not implemented');
+  return value * 1;
 }
 
 /**
@@ -184,8 +188,9 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  // throw new Error('Not implemented');
+  return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
 
 
@@ -206,8 +211,37 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  // throw new Error('Not implemented');
+  num = (`${num}`).split('').map((a) => a * 1);
+  const res = [];
+
+
+  for (let i = 0; i < num.length; i++) {
+    if ((3 - pow) === i && num[3 - pow] >= 5 && pow !== 0) {
+      if (num[i] === 9) {
+        res.push(10);
+        break;
+      }
+      num[i] += 1;
+      res.push(num[i]);
+      break;
+    } else if ((3 - pow) === i && num[3 - pow] < 5 && pow !== 0) {
+      res.push(num[i]);
+      break;
+    }
+    res.push(num[i]);
+  }
+
+
+  const deltaLength = num.length - res.length;
+  let zero = '0';
+  zero = zero.repeat(deltaLength);
+  let res2 = [...res, ...zero];
+  // console.log(res2);
+  res2 = res2.join('') * 1;
+  // console.log(res2);
+  return res2;
 }
 
 /**
