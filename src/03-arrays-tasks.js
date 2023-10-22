@@ -420,7 +420,7 @@ function sortDigitNamesByNumericOrder(arrOrg) {
     eight: 8,
     nine: 9,
   };
-  let arr = arrOrg.map((x) => numbers[`${x}`]);
+  /* let arr = arrOrg.map((x) => numbers[`${x}`]);
   arr = arr.sort((a, b) => {
     if (a > b) {
       return 1;
@@ -439,7 +439,8 @@ function sortDigitNamesByNumericOrder(arrOrg) {
   }).flat();
 
 
-  return arr;
+  return arr; */
+  return arrOrg.sort((a, b) => (numbers[a] - numbers[b]));
 }
 
 /**
