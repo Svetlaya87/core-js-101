@@ -584,20 +584,9 @@ function getIdentityMatrix(n) {
 
   arr = (new Array(n).fill(0)).map(() => new Array(n).fill(0));
 
-  arr = arr.map((el, i) => {
-    const array = el;
-    array.find((_, j) => {
-      if (i === j) {
-        array[j] = 1;
-      }
-      return array[j];
-    });
+  arr.reduce((_, __, i) => { arr[i][i] = 1; return undefined; }, 0);
 
-
-    return arr;
-  });
-
-  return arr[arr.length - 1];
+  return arr;
 }
 
 /**
