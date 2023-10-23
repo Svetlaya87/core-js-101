@@ -602,8 +602,15 @@ function getIdentityMatrix(n) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  // throw new Error('Not implemented');
+  const n = (end - start + 1) / 1;
+
+  let arr = new Array(n).fill(start);
+
+
+  arr = arr.map((_, i) => start + (i - 1 + 1) * 1);
+  return arr;
 }
 
 /**
@@ -617,8 +624,9 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  // throw new Error('Not implemented');
+  return [...new Set(arr)];
 }
 
 /**
@@ -651,8 +659,30 @@ function distinct(/* arr */) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array /* , keySelector, valueSelector */) {
+  // throw new Error('Not implemented');
+  // console.log(array, keySelector, valueSelector);
+  const keys = Object.keys(array[0]);
+
+
+  const arr = [...new Set(array.map((_, i) => array[i][keys[0]]))];
+
+  const cities = new Map();
+  let sum = [];
+  arr.map((el) => {
+    sum = [];
+    array.map((element) => {
+      if (el === element[keys[0]]) {
+        sum.push(element[keys[1]]);
+        cities.set(element[keys[0]], sum);
+      }
+      return undefined;
+    });
+    return undefined;
+  });
+
+
+  return cities;
 }
 
 
