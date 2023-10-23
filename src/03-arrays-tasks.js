@@ -701,7 +701,7 @@ function group(array /* , keySelector, valueSelector */) {
  */
 function selectMany(arr, childrenSelector) {
   // throw new Error('Not implemented');
-  return arr.reduce((ac, el) => ac.concat(childrenSelector(el)), []);
+  return arr.flatMap((el) => childrenSelector(el));
 }
 
 
