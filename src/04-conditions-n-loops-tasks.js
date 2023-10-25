@@ -303,15 +303,15 @@ function isCreditCardNumber(ccn) {
   // throw new Error('Not implemented');
   const numberArr = (`${ccn}`).split('').reverse().map((el) => el * 1);
 
-  for (let i = 1; i < numberArr.length; i += 2) {
-    const element = numberArr[i] * 2;
-    numberArr[i] = element;
-    if (element > 9) {
-      numberArr[i] = (`${element}`).split('').map((el) => el * 1).reduce((acc, el) => acc + el, 0);
-    }
-  }
+  let newArr = numberArr.slice(1).map((element, i) => {
+    if (i % 2 === 0) {
+      const elem = element * 2;
 
-  const newArr = (numberArr.slice(1).reduce((acc, el) => acc + el, 0) * 9) % 10;
+      return elem > 9 ? (`${elem}`).split('').map((el) => el * 1).reduce((acc, el) => acc + el, 0) : elem;
+    }
+    return element;
+  });
+  newArr = (newArr.reduce((acc, el) => acc + el, 0) * 9) % 10;
 
   return newArr === numberArr[0];
 }
