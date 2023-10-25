@@ -255,8 +255,9 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  // throw new Error('Not implemented');
+  return str.split('').reverse().join('');
 }
 
 
@@ -272,8 +273,9 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  // throw new Error('Not implemented');
+  return (`${num}`).split('').reverse().join('') * 1;
 }
 
 
@@ -297,8 +299,21 @@ function reverseInteger(/* num */) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  // throw new Error('Not implemented');
+  const numberArr = (`${ccn}`).split('').reverse().map((el) => el * 1);
+
+  for (let i = 1; i < numberArr.length; i += 2) {
+    const element = numberArr[i] * 2;
+    numberArr[i] = element;
+    if (element > 9) {
+      numberArr[i] = (`${element}`).split('').map((el) => el * 1).reduce((acc, el) => acc + el, 0);
+    }
+  }
+
+  const newArr = (numberArr.slice(1).reduce((acc, el) => acc + el, 0) * 9) % 10;
+
+  return newArr === numberArr[0];
 }
 
 /**
